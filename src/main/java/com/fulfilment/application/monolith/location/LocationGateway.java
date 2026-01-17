@@ -2,12 +2,22 @@ package com.fulfilment.application.monolith.location;
 
 import com.fulfilment.application.monolith.warehouses.domain.models.Location;
 import com.fulfilment.application.monolith.warehouses.domain.ports.LocationResolver;
+
+import jakarta.annotation.PostConstruct;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LocationGateway implements LocationResolver {
 
   private static final List<Location> locations = new ArrayList<>();
+  
+  private Map<String,Location> locationMap = new HashMap<>();
+
 
   static {
     locations.add(new Location("ZWOLLE-001", 1, 40));
@@ -20,9 +30,14 @@ public class LocationGateway implements LocationResolver {
     locations.add(new Location("VETSBY-001", 1, 90));
   }
 
+
+  @PostConstruct
+  public void init() {
+	 locationMap = locations.stream().collect(Collectors.toMap(Location::getIdentification, Function.identity()));
+  }
+  
   @Override
   public Location resolveByIdentifier(String identifier) {
-    // TODO implement this method
-    throw new UnsupportedOperationException("Unimplemented method 'resolveByIdentifier'");
+	  return locationMap.get(identifier);
   }
 }
