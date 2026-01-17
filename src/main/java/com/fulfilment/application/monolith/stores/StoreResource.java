@@ -2,6 +2,8 @@ package com.fulfilment.application.monolith.stores;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fulfilment.application.monolith.common.tx.AfterCommitExecutor;
+
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -29,6 +31,8 @@ public class StoreResource {
 
   @Inject LegacyStoreManagerGateway legacyStoreManagerGateway;
 
+  @Inject AfterCommitExecutor afterCommit;
+  
   private static final Logger LOGGER = Logger.getLogger(StoreResource.class.getName());
 
   @GET
@@ -54,9 +58,10 @@ public class StoreResource {
     }
 
     store.persist();
-
-    legacyStoreManagerGateway.createStoreOnLegacySystem(store);
-
+    
+    afterCommit.run(() ->
+    	legacyStoreManagerGateway.createStoreOnLegacySystem(store)
+    );
     return Response.ok(store).status(201).build();
   }
 
@@ -76,8 +81,9 @@ public class StoreResource {
 
     entity.name = updatedStore.name;
     entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
-
-    legacyStoreManagerGateway.updateStoreOnLegacySystem(updatedStore);
+    afterCommit.run(() ->
+    	legacyStoreManagerGateway.updateStoreOnLegacySystem(updatedStore)
+    );
 
     return entity;
   }
@@ -104,7 +110,9 @@ public class StoreResource {
       entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
     }
 
-    legacyStoreManagerGateway.updateStoreOnLegacySystem(updatedStore);
+    afterCommit.run(() ->
+    	legacyStoreManagerGateway.updateStoreOnLegacySystem(updatedStore)
+    );
 
     return entity;
   }
