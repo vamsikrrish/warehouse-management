@@ -16,4 +16,13 @@ public class Warehouse {
   public LocalDateTime createdAt;
 
   public LocalDateTime archivedAt;
+  
+  public static Warehouse getFrom(com.warehouse.api.beans.Warehouse data) {
+	  Warehouse warehouse = new Warehouse();
+	  warehouse.businessUnitCode=data.getBusinessUnitCode();
+	  warehouse.capacity = data.getCapacity();
+	  warehouse.location = data.getLocation();
+	  warehouse.stock = data.getStock();
+	  return warehouse;
+  }
 }
