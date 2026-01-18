@@ -18,7 +18,7 @@ public class LocationGateway implements LocationResolver {
 
   private static final List<Location> locations = new ArrayList<>();
   
-  private Map<String,Location> locationMap = new HashMap<>();
+  private static Map<String,Location> locationMap = new HashMap<>();
 
 
   static {
@@ -30,13 +30,9 @@ public class LocationGateway implements LocationResolver {
     locations.add(new Location("HELMOND-001", 1, 45));
     locations.add(new Location("EINDHOVEN-001", 2, 70));
     locations.add(new Location("VETSBY-001", 1, 90));
+    locationMap = locations.stream().collect(Collectors.toMap(Location::getIdentification, Function.identity()));
   }
 
-
-  @PostConstruct
-  public void init() {
-	 locationMap = locations.stream().collect(Collectors.toMap(Location::getIdentification, Function.identity()));
-  }
   
   @Override
   public Location resolveByIdentifier(String identifier) {
