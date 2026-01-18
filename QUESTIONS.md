@@ -5,7 +5,9 @@ Here we have 3 questions related to the code base for you to answer. It is not a
 1. In this code base, we have some different implementation strategies when it comes to database access layer and manipulation. If you would maintain this code base, would you refactor any of those? Why?
 
 **Answer:**
-```txt
+```
+
+I would refactor the Store and Product resources to use Repository pattern for better testability and separation of concerns
 
 ```
 ----
@@ -13,6 +15,8 @@ Here we have 3 questions related to the code base for you to answer. It is not a
 
 **Answer:**
 ```txt
+	
+I would choose the OpenAPI approach for a professional project. It ensures that the API contract is the "source of truth and helps in integration with frontend or other services much smoother.
 
 ```
 ----
@@ -20,5 +24,7 @@ Here we have 3 questions related to the code base for you to answer. It is not a
 
 **Answer:**
 ```txt
+I would focus on testing business use cases first and then would further drill down to test the integration and different error code validations
+
 
 ```
