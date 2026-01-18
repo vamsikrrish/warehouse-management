@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "c4e88db0-2ca8-4c17-981a-af59342af5f3",
+    "name": "HCL Java Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51604262",
+    "_collection_link": "https://go.postman.co/collection/51604262-c4e88db0-2ca8-4c17-981a-af59342af5f3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "List All",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/warehouse",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "warehouse"
+          ]
+        },
+        "description": "Generated from cURL: curl --location --request GET 'http://localhost:8080/warehouse' \\\n--header 'Accept: application/json'"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Warehouse",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"businessUnitCode\": \"MWH.001\",\n    \"location\": \"AMSTERDAM-001\",\n    \"capacity\": 100,\n    \"stock\": 50\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/warehouse",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "warehouse"
+          ]
+        },
+        "description": "Generated from cURL: curl --location --request POST 'http://localhost:8080/warehouse' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/json' \\\n--data-raw '{\n    \"businessUnitCode\": \"MWH.001\",\n    \"location\": \"AMSTERDAM-001\",\n    \"capacity\": 100,\n    \"stock\": 50\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Warehouse By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/warehouse/456",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "warehouse",
+            "456"
+          ]
+        },
+        "description": "Generated from cURL: curl --location --request GET 'http://localhost:8080/warehouse/456' \\\n--header 'Accept: application/json'"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Warehouse by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/warehouse/456",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "warehouse",
+            "456"
+          ]
+        },
+        "description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8080/warehouse/456'"
+      },
+      "response": []
+    },
+    {
+      "name": "Replace Warehouse",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"businessUnitCode\": \"MWH.001\",\n    \"location\": \"AMSTERDAM-NEW-002\",\n    \"capacity\": 200,\n    \"stock\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/warehouse/MWH.001/replacement",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "warehouse",
+            "MWH.001",
+            "replacement"
+          ]
+        },
+        "description": "Generated from cURL: curl --location --request POST 'http://localhost:8080/warehouse/MWH.001/replacement' \\\n--header 'Content-Type: application/json' \\\n--header 'Accept: application/json' \\\n--data-raw '{\n    \"businessUnitCode\": \"MWH.001\",\n    \"location\": \"AMSTERDAM-NEW-002\",\n    \"capacity\": 200,\n    \"stock\": 0\n}'"
+      },
+      "response": []
+    }
+  ]
+}
